@@ -6,6 +6,7 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 using System.Web.Http.Cors;
+using IBuyServer.Logic;
 
 namespace IBuyServer.Controllers
 {
@@ -22,6 +23,11 @@ namespace IBuyServer.Controllers
         // GET: api/PurchasedItems
         public List<PurchasedItem> GetPurchasedItems()
         {
+            foreach (var purchasedItem in this.purchasedItemsMock)
+            {
+                DescriptionEnhancer enhancer = new DescriptionEnhancer();
+                purchasedItem.Description = enhancer.AddTheBestAfterEverySecondWord(purchasedItem.Description);
+            }
             return this.purchasedItemsMock.ToList();
         }
 
