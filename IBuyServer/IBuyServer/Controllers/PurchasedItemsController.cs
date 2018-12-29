@@ -28,9 +28,9 @@ namespace IBuyServer.Controllers
         public PurchasedItem GetPurchasedItem(string id)
         {
             PurchasedItem target = Array.Find(this.purchasedItemsMock, (PurchasedItem item) => item.Id == id );
-            if (target === null)
+            if (target == null)
             {
-                return null;
+                throw new HttpResponseException(HttpStatusCode.NotFound);
             }
             return target;
         }
