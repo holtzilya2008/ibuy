@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace IBuyServer.Models
 {
-    public class PurchasedItem
+    [Serializable]
+    public class PurchasedItem : ISerializable
     {
         public string Id { get; set; }
         public string Name { get; set; }
@@ -15,7 +17,14 @@ namespace IBuyServer.Models
         {
             this.Id = id;
             this.Name = name;
-            this.Description = Description;
+            this.Description = description;
+        }
+
+        public void GetObjectData(SerializationInfo info, StreamingContext context)
+        {
+           info.AddValue("id", this.Id, typeof(string));
+           info.AddValue("name", this.Name, typeof(string));
+           info.AddValue("description", this.Description, typeof(string));
         }
     }
 }

@@ -18,10 +18,7 @@ export class PurchasedItemsService {
 
     public getPurchasedItems(): Observable<PurchasedItemVM[]> {
         const url = this.baseUrl;
-        // return this.httpClient.get<PurchasedItemDTO[]>(url)
-
-
-        return this.getMockItems().pipe(
+        return this.httpClient.get<PurchasedItemDTO[]>(url).pipe(
             map((dtos: PurchasedItemDTO[]) => dtos.map(dto => new PurchasedItemVM(dto)))
         );
     }

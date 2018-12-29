@@ -5,12 +5,13 @@ using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace IBuyServer.Controllers
 {
+    [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PurchasedItemsController : ApiController
     {
-
         private PurchasedItem[] purchasedItemsMock = new PurchasedItem[]
         {
             new PurchasedItem("0001", "Oolong Tea", "Tie guan in chinese tea"),
