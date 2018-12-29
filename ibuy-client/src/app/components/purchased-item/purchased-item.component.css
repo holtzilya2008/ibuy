@@ -1,0 +1,12 @@
+.purchased-item {
+    border: 1px black solid;
+    border-radius: 5px;
+    margin: 5px 10px 5px 10px;
+    padding: 5px 10px 5px 10px;
+    background-color: lightblue;
+    color: black;
+    cursor: pointer;
+    height: 100px;
+    width: 400px;
+    overflow: auto;
+}
