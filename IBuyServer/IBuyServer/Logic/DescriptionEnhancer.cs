@@ -10,19 +10,24 @@ namespace IBuyServer.Logic
     {
         public string AddTheBestAfterEverySecondWord(string source)
         {
+            source = source.Trim();
             string[] words = source.Split(' ');
             var sb = new StringBuilder();
             sb.Append("");
             for (int i = 0; i < words.Length; i++)
             {
-                if (i % 2 == 0)
-                {
-                    sb.Append("The Best ");
-                }
                 sb.Append(words[i]);
-                sb.Append(" ");
+                if (i % 2 == 1)
+                {
+                    sb.Append(" The Best");
+                }
+                if (i + 1 != words.Length)
+                {
+                    sb.Append(" ");
+                }
             }
             return sb.ToString();
         }
     }
+
 }
