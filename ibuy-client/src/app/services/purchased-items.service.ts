@@ -38,4 +38,15 @@ export class PurchasedItemsService {
         return of(mockItems).pipe(delay(1000));
     }
 
+    public add(item: PurchasedItemDTO): Observable<void> {
+        const url = this.baseUrl;
+        return this.httpClient.post<void>(url, item);
+    }
+
+    public generateMock(): PurchasedItemDTO {
+        return {
+            name: 'Mock Purchase',
+            description: 'This is Mock Purchase Description'
+        } as any;
+    }
 }

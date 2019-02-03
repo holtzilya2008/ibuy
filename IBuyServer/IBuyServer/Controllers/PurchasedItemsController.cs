@@ -1,60 +1,123 @@
-﻿using IBuyServer.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.Entity;
+using System.Data.Entity.Infrastructure;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
+using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
-using IBuyServer.Logic;
+using System.Web.Http.Description;
+using IBuyServer.Database;
+using IBuyServer.Models;
 
 namespace IBuyServer.Controllers
 {
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PurchasedItemsController : ApiController
     {
-        private PurchasedItem[] purchasedItemsMock = new PurchasedItem[]
-        {
-            new PurchasedItem("0001", "Oolong Tea", "Tie guan in chinese tea"),
-            new PurchasedItem("0002", "HP Laptop", "hp probook sdf3434 series"),
-            new PurchasedItem("0003", "Washing Machine", "Really expensive washing machine")
-        };
+        private PurchasesDB db = new PurchasesDB();
 
         // GET: api/PurchasedItems
-        public List<PurchasedItem> GetPurchasedItems()
+        public IQueryable<PurchasedItem> GetPurchasedItems()
         {
-            foreach (var purchasedItem in this.purchasedItemsMock)
-            {
-                DescriptionEnhancer enhancer = new DescriptionEnhancer();
-                purchasedItem.Description = enhancer.AddTheBestAfterEverySecondWord(purchasedItem.Description);
-            }
-            return this.purchasedItemsMock.ToList();
+            return db.PurchasedItems;
         }
 
         // GET: api/PurchasedItems/5
-        public PurchasedItem GetPurchasedItem(string id)
+        [ResponseType(typeof(PurchasedItem))]
+        public async Task<IHttpActionResult> GetPurchasedItem(string id)
         {
-            PurchasedItem target = Array.Find(this.purchasedItemsMock, (PurchasedItem item) => item.Id == id );
-            if (target == null)
+            PurchasedItem purchasedItem = await db.PurchasedItems.FindAsync(id);
+            if (purchasedItem == null)
             {
-                throw new HttpResponseException(HttpStatusCode.NotFound);
+                return NotFound();
             }
-            return target;
-        }
 
-        // POST: api/PurchasedItems
-        public void Post([FromBody]string value)
-        {
+            return Ok(purchasedItem);
         }
 
         // PUT: api/PurchasedItems/5
-        public void Put(int id, [FromBody]string value)
+        [ResponseType(typeof(void))]
+        public async Task<IHttpActionResult> PutPurchasedItem(string id, PurchasedItem purchasedItem)
         {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            if (id != purchasedItem.Id)
+            {
+                return BadRequest();
+            }
+
+            db.Entry(purchasedItem).State = EntityState.Modified;
+
+            try
+            {
+                await db.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!PurchasedItemExists(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
+
+            return StatusCode(HttpStatusCode.NoContent);
+        }
+
+        // POST: api/PurchasedItems
+        [ResponseType(typeof(PurchasedItem))]
+        public async Task<IHttpActionResult> PostPurchasedItem(PurchasedItem purchasedItem)
+        {
+            if (!ModelState.IsValid)
+            {
+                return BadRequest(ModelState);
+            }
+
+            purchasedItem.Id = Guid.NewGuid().ToString();
+            db.PurchasedItems.Add(purchasedItem);
+            await db.SaveChangesAsync();
+
+            return CreatedAtRoute("DefaultApi", new { id = purchasedItem.Id }, purchasedItem);
         }
 
         // DELETE: api/PurchasedItems/5
-        public void Delete(int id)
+        [ResponseType(typeof(PurchasedItem))]
+        public async Task<IHttpActionResult> DeletePurchasedItem(string id)
         {
+            PurchasedItem purchasedItem = await db.PurchasedItems.FindAsync(id);
+            if (purchasedItem == null)
+            {
+                return NotFound();
+            }
+
+            db.PurchasedItems.Remove(purchasedItem);
+            await db.SaveChangesAsync();
+
+            return Ok(purchasedItem);
+        }
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing)
+            {
+                db.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private bool PurchasedItemExists(string id)
+        {
+            return db.PurchasedItems.Count(e => e.Id == id) > 0;
         }
     }
 }

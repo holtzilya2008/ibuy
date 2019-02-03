@@ -5,7 +5,7 @@ import { PurchasedItemsService } from 'src/app/services/purchased-items.service'
 @Component({
   selector: 'app-purchased-items-list',
   templateUrl: './purchased-items-list.component.html',
-  styleUrls: ['./purchased-items-list.component.css']
+  styleUrls: ['./purchased-items-list.component.scss']
 })
 export class PurchasedItemsListComponent implements OnInit {
 
@@ -19,4 +19,8 @@ export class PurchasedItemsListComponent implements OnInit {
         });
     }
 
+    public onAdd() {
+        const dto = this.purchasedItemsService.generateMock();
+        this.purchasedItemsService.add(dto).subscribe();
+    }
 }
