@@ -12,6 +12,11 @@ namespace IBuyServer.Models
         [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key]
         public string Id { get; set; }
         public string Name { get; set; }
-        public virtual ICollection<PurchasedItem> Items { get; set; }
+        public List<PurchasedItem> Items { get; set; }
+
+        public PurchaseCategory()
+        {
+            Items = new List<PurchasedItem>();
+        }
     }
 }

@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
+using Contracts;
 using IBuyServer.Database;
 using IBuyServer.Models;
 
@@ -21,9 +22,17 @@ namespace IBuyServer.Controllers
         private PurchasesDB db = new PurchasesDB();
 
         // GET: api/PurchasedItems
-        public IQueryable<PurchasedItem> GetPurchasedItems()
+        public List<PurchasedItemDTO> GetPurchasedItems()
         {
-            return db.PurchasedItems;
+            return db.PurchasedItems
+                    .Select(item => new PurchasedItemDTO
+                    {
+                        Id = item.Id,
+                        Name = item.Name,
+                        Description = item.Description
+                    })
+                    .ToList<PurchasedItemDTO>();
+
         }
 
         // GET: api/PurchasedItems/5
@@ -76,18 +85,20 @@ namespace IBuyServer.Controllers
 
         // POST: api/PurchasedItems
         [ResponseType(typeof(PurchasedItem))]
-        public async Task<IHttpActionResult> PostPurchasedItem(PurchasedItem purchasedItem)
+        public async Task<IHttpActionResult> PostPurchasedItem(PurchasedItemDTO dto)
         {
             if (!ModelState.IsValid)
             {
                 return BadRequest(ModelState);
             }
-
-            purchasedItem.Id = Guid.NewGuid().ToString();
-            db.PurchasedItems.Add(purchasedItem);
+            PurchasedItem newItem = new PurchasedItem();
+            newItem.Id = Guid.NewGuid().ToString();
+            newItem.Description = dto.Description;
+            newItem.Name = dto.Name;
+            db.PurchasedItems.Add(newItem);
             await db.SaveChangesAsync();
 
-            return CreatedAtRoute("DefaultApi", new { id = purchasedItem.Id }, purchasedItem);
+            return CreatedAtRoute("DefaultApi", new { id = newItem.Id }, newItem);
         }
 
         // DELETE: api/PurchasedItems/5

@@ -10,10 +10,21 @@ namespace IBuyServer.Models
 {
     public class PurchasedItem
     {
+
+        public PurchasedItem()
+        {
+            this.Category = new PurchaseCategory
+            {
+                Id = "0000_DEFAULT_CATEGORY_ID",
+                Name = "Default",
+                Items = new List<PurchasedItem>()
+            };
+        }
+
         [DatabaseGenerated(DatabaseGeneratedOption.Identity), Key]
         public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public virtual PurchaseCategory Category { get; set; }
+        public PurchaseCategory Category { get; set; }
     }
 }
