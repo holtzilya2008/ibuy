@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBuyServer.Logic", "IBuySer
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBuyServer.Domain.Models", "Domain\IBuyServer.Domain.Models\IBuyServer.Domain.Models.csproj", "{6F28C3F2-7E7A-4488-984B-9AC7F84ECD5A}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domein", "Domein", "{273BCA79-389C-4273-A3F7-70F3699CE50E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Domain", "Domain", "{273BCA79-389C-4273-A3F7-70F3699CE50E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "IBuyServer.Domain.DataModel", "Domain\IBuyServer.Domain.DataModel\IBuyServer.Domain.DataModel.csproj", "{07166FD9-390B-476C-97EA-9640E4F8F0EC}"
 EndProject

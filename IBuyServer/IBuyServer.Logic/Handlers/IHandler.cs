@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace IBuyServer.Domain.DataModel
+namespace IBuyServer.Logic.Handlers
 {
-    public class Class1
+    interface IHandler<in TRequest, out TResponse>
     {
+        TResponse Handle(TRequest requestArgs);
     }
 }

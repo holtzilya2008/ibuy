@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Contracts
 {
-    public class PurchasedItemDTO
+    public class PurchaseRecordDTO
     {
         public string Id { get; set; }
         public string Name { get; set; }

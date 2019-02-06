@@ -46,6 +46,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handlers\IHandler.cs" />
+    <Compile Include="Handlers\PurchaseRecords\GetPurchaseRecordsHandler.cs" />
+    <Compile Include="Mapping\IMappingProfile.cs" />
+    <Compile Include="Mapping\PurchaseRecordMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -53,13 +57,18 @@
       <Project>{88b42b0f-7177-484c-9775-c881cb1c1c9e}</Project>
       <Name>IBuyServer.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Domain\IBuyServer.Domain.DataModel\IBuyServer.Domain.DataModel.csproj">
+      <Project>{07166fd9-390b-476c-97ea-9640e4f8f0ec}</Project>
+      <Name>IBuyServer.Domain.DataModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Domain\IBuyServer.Domain.Models\IBuyServer.Domain.Models.csproj">
+      <Project>{6f28c3f2-7e7a-4488-984b-9ac7f84ecd5a}</Project>
+      <Name>IBuyServer.Domain.Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Handlers\" />
-    <Folder Include="MApping\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
