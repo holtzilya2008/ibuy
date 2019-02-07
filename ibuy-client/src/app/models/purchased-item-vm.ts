@@ -3,10 +3,10 @@ import { PurchaseRecordDTO } from "../contracts/purchased-item-dto";
 export class PurchasedItemVM {
 
     public name: string;
-    public descriptiopn: string;
+    public description: string;
 
     constructor(private dto: PurchaseRecordDTO) {
         this.name = dto.name;
-        this.descriptiopn = dto.description;
+        this.description = dto.description;
     }
 }

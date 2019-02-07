@@ -10,12 +10,20 @@ import { from } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
+import { PurchaseManagerViewComponent } from './components/purchase-manager-view/purchase-manager-view.component';
+import { HeaderComponent } from './components/header/header.component';
+import { PurchaseItemDetailsComponent } from './components/purchase-item-details/purchase-item-details.component';
+import { PurchaseItemActionsComponent } from './components/purchase-item-actions/purchase-item-actions.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PurchasedItemComponent,
-    PurchasedItemsListComponent
+    PurchasedItemsListComponent,
+    PurchaseManagerViewComponent,
+    HeaderComponent,
+    PurchaseItemDetailsComponent,
+    PurchaseItemActionsComponent
   ],
   imports: [
     BrowserModule,
