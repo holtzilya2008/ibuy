@@ -14,13 +14,9 @@ export class PurchasedItemsListComponent implements OnInit {
     constructor(private purchasedItemsService: PurchasedItemsService) { }
 
     ngOnInit() {
-        this.purchasedItemsService.getPurchasedItems().subscribe((items) => {
+        this.purchasedItemsService.getAll().subscribe((items) => {
             this.purchasedItems = items;
         });
     }
 
-    public onAdd() {
-        const dto = this.purchasedItemsService.generateMock();
-        this.purchasedItemsService.add(dto).subscribe();
-    }
 }

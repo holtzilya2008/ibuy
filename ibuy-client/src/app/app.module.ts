@@ -7,6 +7,9 @@ import { PurchasedItemComponent } from './components/purchased-item/purchased-it
 import { PurchasedItemsListComponent } from './components/purchased-items-list/purchased-items-list.component';
 import { PurchasedItemsService } from './services/purchased-items.service';
 import { from } from 'rxjs';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { FlexLayoutModule } from '@angular/flex-layout';
+import {MatCardModule} from '@angular/material/card';
 
 @NgModule({
   declarations: [
@@ -16,7 +19,10 @@ import { from } from 'rxjs';
   ],
   imports: [
     BrowserModule,
-    HttpClientModule
+    HttpClientModule,
+    BrowserAnimationsModule,
+    FlexLayoutModule,
+    MatCardModule
   ],
   providers: [
     PurchasedItemsService

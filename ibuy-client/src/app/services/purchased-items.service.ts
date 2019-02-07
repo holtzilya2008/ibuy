@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { environment } from 'src/environments/environment';
 import { Observable, of } from 'rxjs';
-import { PurchasedItemDTO } from '../contracts/purchased-item-dto';
+import { PurchaseRecordDTO } from '../contracts/purchased-item-dto';
 import { HttpClient } from '@angular/common/http';
 import { PurchasedItemVM } from '../models/purchased-item-vm';
 import { map } from 'rxjs/operators';
@@ -12,41 +12,40 @@ import { delay } from 'rxjs/operators';
 })
 export class PurchasedItemsService {
 
-    private baseUrl = environment.serverUrl + '/api/purchasedItems';
+    private baseUrl = environment.serverUrl + '/api/PurchaseRecords';
 
     constructor(private httpClient: HttpClient) {}
 
-    public getPurchasedItems(): Observable<PurchasedItemVM[]> {
+    public getAll(): Observable<PurchasedItemVM[]> {
         const url = this.baseUrl;
-        return this.httpClient.get<PurchasedItemDTO[]>(url).pipe(
-            map((dtos: PurchasedItemDTO[]) => dtos.map(dto => new PurchasedItemVM(dto)))
+        return this.httpClient.get<PurchaseRecordDTO[]>(url).pipe(
+            map((dtos: PurchaseRecordDTO[]) => dtos.map(dto => new PurchasedItemVM(dto)))
         );
     }
 
-
-    private getMockItems(): Observable<PurchasedItemDTO[]> {
-        const mockItems = [];
-        for (let i = 0; i < 6; i++) {
-            mockItems.push(
-                {
-                    id: `${i}A${i}A${i}A${i}`,
-                    name: `Item ${i}`,
-                    description: `Item ${i} description`
-                }
-            );
-        }
-        return of(mockItems).pipe(delay(1000));
+    public get(id: string): Observable<PurchasedItemVM> {
+        const url = `${this.baseUrl}/${id}`;
+        return this.httpClient.get<PurchaseRecordDTO>(url).pipe(
+            map(dto => new PurchasedItemVM(dto))
+        );
     }
 
-    public add(item: PurchasedItemDTO): Observable<void> {
+    public add(item: PurchaseRecordDTO): Observable<PurchasedItemVM> {
         const url = this.baseUrl;
-        return this.httpClient.post<void>(url, item);
+        return this.httpClient.post<PurchaseRecordDTO>(url, item).pipe(
+            map(dto => new PurchasedItemVM(dto))
+        );
     }
 
-    public generateMock(): PurchasedItemDTO {
-        return {
-            name: 'Mock Purchase',
-            description: 'This is Mock Purchase Description'
-        } as any;
+    public update(item: PurchaseRecordDTO): Observable<PurchasedItemVM> {
+        const url = this.baseUrl;
+        return this.httpClient.put<PurchaseRecordDTO>(url, item).pipe(
+            map(dto => new PurchasedItemVM(dto))
+        );
+    }
+
+    public delete(id: string): Observable<string> {
+        const url = `${this.baseUrl}/${id}`;
+        return this.httpClient.delete<string>(url);
     }
 }
