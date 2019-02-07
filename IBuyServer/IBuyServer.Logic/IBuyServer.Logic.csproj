@@ -49,7 +49,9 @@
     <Compile Include="Handlers\IHandler.cs" />
     <Compile Include="Handlers\PurchaseRecords\AddPurchaseRecordHandler.cs" />
     <Compile Include="Handlers\PurchaseRecords\DeletePurchaseRecordHandler.cs" />
+    <Compile Include="Handlers\PurchaseRecords\GetPurchaseRecordById.cs" />
     <Compile Include="Handlers\PurchaseRecords\GetPurchaseRecordsHandler.cs" />
+    <Compile Include="Handlers\PurchaseRecords\UpdatePurchaseRecord.cs" />
     <Compile Include="Mapping\AddPurchaseRecordMappingProfile.cs" />
     <Compile Include="Mapping\IMappingProfile.cs" />
     <Compile Include="Mapping\PurchaseRecordMappingProfile.cs" />

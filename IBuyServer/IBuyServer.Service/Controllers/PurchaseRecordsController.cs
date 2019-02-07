@@ -24,9 +24,11 @@ namespace IBuyServer.Service.Controllers
         }
 
         // GET: api/PurchaseRecords/5
-        public string Get(int id)
+        [ResponseType(typeof(PurchaseRecordDTO))]
+        public IHttpActionResult Get(string id)
         {
-            return "value";
+            var result = new GetPurchaseRecordById().Handle(id);
+            return Ok(result);
         }
 
         // POST: api/PurchaseRecords
@@ -37,9 +39,12 @@ namespace IBuyServer.Service.Controllers
             return Ok(result);
         }
 
-        // PUT: api/PurchaseRecords/5
-        public void Put(int id, [FromBody]string value)
+        // PUT: api/PurchaseRecords/
+        [ResponseType(typeof(PurchaseRecordDTO))]
+        public IHttpActionResult Put([FromBody] PurchaseRecordDTO updated)
         {
+            var result = new UpdatePurchaseRecord().Handle(updated);
+            return Ok(result);
         }
 
         // DELETE: api/PurchaseRecords/5
