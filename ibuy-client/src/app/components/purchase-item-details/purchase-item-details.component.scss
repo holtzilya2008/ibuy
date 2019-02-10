@@ -1,0 +1,12 @@
+@import '../../styles/variables.scss';
+
+.ib-purchased-item-details {
+    .ib-form-side {
+        margin-left: $length-md;
+        margin-top: $length-lg;
+        width: 350px;
+    }
+    mat-form-field {
+        margin-bottom: $length-md;
+    }
+}

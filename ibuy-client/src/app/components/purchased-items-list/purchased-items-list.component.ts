@@ -22,16 +22,29 @@ export class PurchasedItemsListComponent implements OnInit {
         private router: Router ) { }
 
     ngOnInit() {
+        this.purchasedItemsService.itemUpdated.subscribe((itemId) => this.refresh(itemId));
+        this.refresh();
+    }
+
+    refresh(selectedItemId = '') {
         this.purchasedItemsRepository.getAll().subscribe((items) => {
             this.purchasedItems = items;
+            if (selectedItemId) {
+                const targetItem = this.purchasedItems.find(item => item.id === selectedItemId);
+                this.selectItem(targetItem);
+            }
         });
     }
 
     onSelect(item: PurchasedItemVM) {
-        this.unselectAll();
-        item.isSelected = true;
+        this.selectItem(item);
         const id = item.isNew ? 'new' : item.id;
         this.router.navigate(['purchase-manager', id ]);
+    }
+
+    private selectItem(item: PurchasedItemVM) {
+        this.unselectAll();
+        item.isSelected = true;
     }
 
     private unselectAll() {

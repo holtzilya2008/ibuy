@@ -1,3 +1,26 @@
-<p>
-  purchase-item-details {{ name }}
-</p>
+<div class="ib-purchased-item-details">
+    <div class="ib-form-side">
+        <form fxLayout="column" [formGroup]="itemForm">
+                <mat-form-field>
+                    <input matInput formControlName="name" placeholder="Name" required>
+                    <mat-error *ngIf="name.invalid && name.errors['required']">Name is required</mat-error>
+                    <mat-error *ngIf="name.invalid && name.errors['maxlength']">
+                        Name is too long
+                    </mat-error>
+                </mat-form-field>
+                <mat-form-field>
+                    <textarea matInput #descriptionInput formControlName="description" placeholder="Description" matTextareaAutosize matAutosizeMinRows="4"
+                        matAutosizeMaxRows="8"></textarea>
+                    <mat-hint align="end">{{descriptionInput.value.length}} / 5000</mat-hint>
+                    <mat-error *ngIf="description.invalid && description.errors['maxlength']">
+                        Bio is too long
+                    </mat-error>
+                </mat-form-field>
+            </form>
+
+            <button mat-raised-button (click)="onSave()" color="primary" [disabled]="itemForm.pristine || itemForm.invalid">Save</button>
+    </div>
+
+
+</div>
+

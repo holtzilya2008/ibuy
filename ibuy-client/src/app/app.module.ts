@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { PurchasedItemComponent } from './components/purchased-item/purchased-item.component';
 import { PurchasedItemsListComponent } from './components/purchased-items-list/purchased-items-list.component';
 import { PurchasedItemsService } from './services/purchased-items.service';
-import { from } from 'rxjs';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import {MatCardModule} from '@angular/material/card';
@@ -18,6 +17,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { PurchasedItemsRepositoryService } from './services/purchased-items-repository.service';
+import {MatInputModule} from '@angular/material/input';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -37,7 +38,9 @@ import { PurchasedItemsRepositoryService } from './services/purchased-items-repo
     MatCardModule,
     MatSnackBarModule,
     MatButtonModule,
-    AppRoutingModule
+    AppRoutingModule,
+    MatInputModule,
+    ReactiveFormsModule
   ],
   providers: [
     PurchasedItemsService,

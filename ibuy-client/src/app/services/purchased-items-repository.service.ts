@@ -5,6 +5,7 @@ import { PurchasedItemVM } from '../models/purchased-item-vm';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { map } from 'rxjs/operators';
+import { AddPurchasedRecordDTO } from '../contracts/add-purchased-record-dto';
 
 @Injectable({
   providedIn: 'root'
@@ -29,7 +30,7 @@ export class PurchasedItemsRepositoryService {
       );
   }
 
-  public add(item: PurchaseRecordDTO): Observable<PurchasedItemVM> {
+  public add(item: AddPurchasedRecordDTO): Observable<PurchasedItemVM> {
       const url = this.baseUrl;
       return this.httpClient.post<PurchaseRecordDTO>(url, item).pipe(
           map(dto => new PurchasedItemVM(dto))
