@@ -7,7 +7,7 @@
             <p>{{ purchasedItem.description }}</p>
         </mat-card-content>
         <mat-card-actions>
-            <button mat-button>Delete</button>
+            <button (click)="onDelete()" mat-button>Delete</button>
         </mat-card-actions>
     </mat-card>
 </div>

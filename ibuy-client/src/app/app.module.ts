@@ -14,6 +14,8 @@ import { PurchaseManagerViewComponent } from './components/purchase-manager-view
 import { HeaderComponent } from './components/header/header.component';
 import { PurchaseItemDetailsComponent } from './components/purchase-item-details/purchase-item-details.component';
 import { PurchaseItemActionsComponent } from './components/purchase-item-actions/purchase-item-actions.component';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatButtonModule } from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { PurchaseItemActionsComponent } from './components/purchase-item-actions
     HttpClientModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
-    MatCardModule
+    MatCardModule,
+    MatSnackBarModule,
+    MatButtonModule
   ],
   providers: [
     PurchasedItemsService

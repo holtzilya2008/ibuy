@@ -12,7 +12,7 @@ export class PurchasedItemComponent implements OnInit {
     public purchasedItem: PurchasedItemVM;
 
     @Output()
-    public deleteClicked = new EventEmitter<void>();
+    public deleteClicked = new EventEmitter<PurchasedItemVM>();
 
     constructor() { }
 
@@ -20,7 +20,7 @@ export class PurchasedItemComponent implements OnInit {
     }
 
     onDelete() {
-        this.deleteClicked.emit();
+        this.deleteClicked.emit(this.purchasedItem);
     }
 
 }

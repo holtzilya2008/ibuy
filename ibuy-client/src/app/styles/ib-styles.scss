@@ -1,0 +1,19 @@
+@import './variables.scss';
+
+
+body {
+    background-color: $ibMainBG;
+    color: white;
+}
+
+.ib-main-view {
+    margin: 20px;
+    height: 90%;
+    width: 95%;
+}
+
+.ib-show-border {
+    margin: 5px;
+    padding: 5px;
+    border: 1px solid white;
+}
