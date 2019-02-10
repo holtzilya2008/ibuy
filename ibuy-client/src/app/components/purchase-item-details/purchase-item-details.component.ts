@@ -28,12 +28,9 @@ export class PurchaseItemDetailsComponent implements OnInit {
     ngOnInit() {
         this.itemId = null;
         this.initForm();
-        const id = this.activatedRoute.snapshot.params.id;
-        if (id !== 'new') {
-            this.initFromServer(id);
-        } else {
-            this.isNew = true;
-        }
+        const id = this.activatedRoute.params.subscribe((params) => {
+            this.resetFormValues(params.id);
+        });
     }
 
     private initForm() {
@@ -43,12 +40,27 @@ export class PurchaseItemDetailsComponent implements OnInit {
         })
     }
 
+    resetFormValues(itemId: string) {
+        if (itemId !== 'new') {
+            this.initFromServer(itemId);
+        } else {
+            this.initNew();
+        }
+    }
+
     private initFromServer(id: string) {
         this.purchaseItemsRepository.get(id).subscribe((vm) => {
             this.itemId = vm.id;
             this.name.setValue(vm.name);
             this.description.setValue(vm.description);
         });
+    }
+
+    private initNew() {
+        this.isNew = true;
+        this.itemId = '';
+        this.name.setValue('');
+        this.description.setValue('');
     }
 
     public get name(): FormControl { return this.itemForm.get('name') as FormControl; }
@@ -74,6 +86,7 @@ export class PurchaseItemDetailsComponent implements OnInit {
             this.itemId = responseVM.id;
             this.isNew = false;
             this.emitUpdated();
+            this.itemForm.markAsPristine();
         });
     }
 
@@ -88,6 +101,7 @@ export class PurchaseItemDetailsComponent implements OnInit {
                 duration: 5000
             });
             this.emitUpdated();
+            this.itemForm.markAsPristine();
         });
     }
 

@@ -27,7 +27,9 @@ export class PurchasedItemComponent implements OnInit {
     }
 
     setAsSelected() {
-        this.selected.emit(this.purchasedItem);
+        if (!this.purchasedItem.isSelected) {
+            this.selected.emit(this.purchasedItem);
+        }
     }
 
 }

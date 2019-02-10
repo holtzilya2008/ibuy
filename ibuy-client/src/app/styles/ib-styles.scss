@@ -13,7 +13,10 @@ body {
 }
 
 .ib-show-border {
+    border: 1px solid white;
+}
+
+.ib-container {
     margin: 5px;
     padding: 5px;
-    border: 1px solid white;
 }

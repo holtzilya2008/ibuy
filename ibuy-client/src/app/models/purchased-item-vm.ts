@@ -14,7 +14,7 @@ export class PurchasedItemVM {
 
     private initNew() {
         this.id = '';
-        this.name = '';
+        this.name = 'New Purchase Record';
         this.description = '';
     }
 
@@ -22,12 +22,6 @@ export class PurchasedItemVM {
         this.id = this.dto.id;
         this.name = this.dto.name;
         this.description = this.dto.description;
-    }
-
-    public setDto(dto: PurchaseRecordDTO) {
-        this.isNew = false;
-        this.dto = dto;
-        this.initFromDto(dto);
     }
 
 }

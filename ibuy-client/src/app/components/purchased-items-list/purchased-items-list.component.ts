@@ -14,6 +14,7 @@ import { PurchasedItemsService } from 'src/app/services/purchased-items.service'
 export class PurchasedItemsListComponent implements OnInit {
 
     purchasedItems: PurchasedItemVM[];
+    selectedItem: PurchasedItemVM;
 
     constructor(
         private purchasedItemsRepository: PurchasedItemsRepositoryService,
@@ -36,8 +37,12 @@ export class PurchasedItemsListComponent implements OnInit {
         });
     }
 
-    onSelect(item: PurchasedItemVM) {
+    selectAndNavigate(item: PurchasedItemVM) {
+        if (this.selectedItem && this.selectedItem.isNew && item !== this.selectedItem) {
+            this.purchasedItems.pop();
+        }
         this.selectItem(item);
+        console.log(this.selectedItem);
         const id = item.isNew ? 'new' : item.id;
         this.router.navigate(['purchase-manager', id ]);
     }
@@ -45,6 +50,7 @@ export class PurchasedItemsListComponent implements OnInit {
     private selectItem(item: PurchasedItemVM) {
         this.unselectAll();
         item.isSelected = true;
+        this.selectedItem = item;
     }
 
     private unselectAll() {
@@ -53,16 +59,35 @@ export class PurchasedItemsListComponent implements OnInit {
                 item.isSelected = false;
             }
         }
+        this.selectedItem = null;
     }
 
-    onDelete(target: PurchasedItemVM) {
+    public onDelete(target: PurchasedItemVM) {
+        if (this.selectedItem.isNew) {
+            this.purchasedItems.pop();
+            this.unselectAllAndHideDetails();
+        }
+        if (target.isNew) {
+            return;
+        }
         this.purchasedItemsRepository.delete(target.id).subscribe(() => {
-            const index = this.purchasedItems.findIndex((item) => item.id === target.id);
-            this.purchasedItems.splice(index, 1);
+            this.refresh();
             this.snackBar.open(`${target.name} is removed form purchases list`,'', {
                 duration: 3000
             });
+            this.unselectAllAndHideDetails();
         });
+    }
+
+    private unselectAllAndHideDetails() {
+        this.unselectAll();
+        this.router.navigate(['purchase-manager']);
+    }
+
+    onAddClicked() {
+        const newVM = new PurchasedItemVM(null, true);
+        this.purchasedItems.push(newVM);
+        this.selectAndNavigate(newVM);
     }
 
 }
