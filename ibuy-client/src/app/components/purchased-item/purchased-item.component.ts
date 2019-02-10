@@ -14,6 +14,9 @@ export class PurchasedItemComponent implements OnInit {
     @Output()
     public deleteClicked = new EventEmitter<PurchasedItemVM>();
 
+    @Output()
+    public selected = new EventEmitter<PurchasedItemVM>();
+
     constructor() { }
 
     ngOnInit() {
@@ -21,6 +24,10 @@ export class PurchasedItemComponent implements OnInit {
 
     onDelete() {
         this.deleteClicked.emit(this.purchasedItem);
+    }
+
+    setAsSelected() {
+        this.selected.emit(this.purchasedItem);
     }
 
 }

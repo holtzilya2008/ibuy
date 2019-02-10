@@ -16,6 +16,8 @@ import { PurchaseItemDetailsComponent } from './components/purchase-item-details
 import { PurchaseItemActionsComponent } from './components/purchase-item-actions/purchase-item-actions.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatButtonModule } from '@angular/material/button';
+import { AppRoutingModule } from './app-routing.module';
+import { PurchasedItemsRepositoryService } from './services/purchased-items-repository.service';
 
 @NgModule({
   declarations: [
@@ -34,10 +36,12 @@ import { MatButtonModule } from '@angular/material/button';
     FlexLayoutModule,
     MatCardModule,
     MatSnackBarModule,
-    MatButtonModule
+    MatButtonModule,
+    AppRoutingModule
   ],
   providers: [
-    PurchasedItemsService
+    PurchasedItemsService,
+    PurchasedItemsRepositoryService
   ],
   bootstrap: [AppComponent]
 })

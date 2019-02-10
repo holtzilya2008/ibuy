@@ -1,5 +1,6 @@
 <div class="purchased-items-list">
     <app-purchased-item *ngFor="let purchasedItem of purchasedItems"
         [purchasedItem]="purchasedItem"
+        (selected)="onSelect($event)"
         (deleteClicked)="onDelete($event)" ></app-purchased-item>
 </div>
