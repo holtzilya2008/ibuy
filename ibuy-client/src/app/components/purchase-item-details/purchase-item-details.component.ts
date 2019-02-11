@@ -9,7 +9,7 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { PurchasedItemsService } from 'src/app/services/purchased-items.service';
 
 @Component({
-    selector: 'app-purchase-item-details',
+    selector: 'ib-purchase-item-details',
     templateUrl: './purchase-item-details.component.html',
     styleUrls: ['./purchase-item-details.component.scss']
 })

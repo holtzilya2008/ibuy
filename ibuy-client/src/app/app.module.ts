@@ -18,7 +18,9 @@ import { MatButtonModule } from '@angular/material/button';
 import { AppRoutingModule } from './app-routing.module';
 import { PurchasedItemsRepositoryService } from './services/purchased-items-repository.service';
 import {MatInputModule} from '@angular/material/input';
+import {MatIconModule} from '@angular/material/icon';
 import { ReactiveFormsModule } from '@angular/forms';
+
 
 @NgModule({
   declarations: [
@@ -40,7 +42,8 @@ import { ReactiveFormsModule } from '@angular/forms';
     MatButtonModule,
     AppRoutingModule,
     MatInputModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatIconModule
   ],
   providers: [
     PurchasedItemsService,

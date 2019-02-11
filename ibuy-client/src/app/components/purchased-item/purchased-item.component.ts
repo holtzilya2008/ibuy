@@ -2,7 +2,7 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { PurchasedItemVM } from 'src/app/models/purchased-item-vm';
 
 @Component({
-  selector: 'app-purchased-item',
+  selector: 'ib-purchased-item',
   templateUrl: './purchased-item.component.html',
   styleUrls: ['./purchased-item.component.scss']
 })

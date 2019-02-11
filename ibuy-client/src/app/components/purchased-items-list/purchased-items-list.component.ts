@@ -7,7 +7,7 @@ import { PurchasedItemsRepositoryService } from 'src/app/services/purchased-item
 import { PurchasedItemsService } from 'src/app/services/purchased-items.service';
 
 @Component({
-  selector: 'app-purchased-items-list',
+  selector: 'ib-purchased-items-list',
   templateUrl: './purchased-items-list.component.html',
   styleUrls: ['./purchased-items-list.component.scss']
 })
@@ -42,7 +42,6 @@ export class PurchasedItemsListComponent implements OnInit {
             this.purchasedItems.pop();
         }
         this.selectItem(item);
-        console.log(this.selectedItem);
         const id = item.isNew ? 'new' : item.id;
         this.router.navigate(['purchase-manager', id ]);
     }

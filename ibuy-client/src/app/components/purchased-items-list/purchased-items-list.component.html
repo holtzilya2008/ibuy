@@ -1,9 +1,12 @@
 <div class="purchased-items-list">
-    <app-purchased-item *ngFor="let purchasedItem of purchasedItems"
+    <ib-purchased-item *ngFor="let purchasedItem of purchasedItems"
         [purchasedItem]="purchasedItem"
         (selected)="selectAndNavigate($event)"
-        (deleteClicked)="onDelete($event)" ></app-purchased-item>
+        (deleteClicked)="onDelete($event)" ></ib-purchased-item>
 </div>
 <div fxLayout="column" fxLayoutAlign="center center">
-        <button mat-raised-button (click)="onAddClicked()" color="primary" [disabled]="selectedItem && selectedItem.isNew">Add</button>
+        <button mat-raised-button (click)="onAddClicked()" color="primary" [disabled]="selectedItem && selectedItem.isNew">
+            <mat-icon>add</mat-icon>
+            Add
+        </button>
 </div>
