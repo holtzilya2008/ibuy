@@ -60,6 +60,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\IBuyServer.Infrastructure\IBuyServer.Infrastructure.csproj">
+      <Project>{d44a2c0b-72a1-4a3d-a5d0-64d93adf8136}</Project>
+      <Name>IBuyServer.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IBuyServer.Domain.Models\IBuyServer.Domain.Models.csproj">
       <Project>{6f28c3f2-7e7a-4488-984b-9ac7f84ecd5a}</Project>
       <Name>IBuyServer.Domain.Models</Name>
