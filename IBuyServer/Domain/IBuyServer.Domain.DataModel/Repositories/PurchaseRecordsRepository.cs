@@ -6,7 +6,7 @@ namespace IBuyServer.Domain.DataModel.Repositories
 {
     public class PurchaseRecordsRepository : EntityRepositoryBase<PurchaseRecord, IBuyContext>
     {
-        public PurchaseRecordsRepository(IBuyContext context) : base(context)
+        public PurchaseRecordsRepository() : base(new IBuyContext())
         {
         }
     }

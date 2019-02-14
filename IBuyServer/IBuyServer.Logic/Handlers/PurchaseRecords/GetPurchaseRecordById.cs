@@ -17,7 +17,7 @@ namespace IBuyServer.Logic.Handlers.PurchaseRecords
             var mappingProfile = new PurchaseRecordMappingProfile();
             Guid id = Guid.Parse(requestArgs);
 
-            var record = repository.Get(id);
+            var record = repository.GetById(id);
             return mappingProfile.ToDto(record);
         }
     }

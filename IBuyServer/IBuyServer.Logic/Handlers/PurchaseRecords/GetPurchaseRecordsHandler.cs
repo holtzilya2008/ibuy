@@ -18,7 +18,7 @@ namespace IBuyServer.Logic.Handlers.PurchaseRecords
             var repository = new PurchaseRecordsRepository();
 
             return repository
-                    .All()
+                    .GetAll()
                     .Select(record => mappingProfile.ToDto(record))
                     .ToList();
         }

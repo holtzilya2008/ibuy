@@ -122,6 +122,10 @@
       <Project>{88b42b0f-7177-484c-9775-c881cb1c1c9e}</Project>
       <Name>IBuyServer.Contracts</Name>
     </ProjectReference>
+    <ProjectReference Include="..\IBuyServer.Infrastructure\IBuyServer.Infrastructure.csproj">
+      <Project>{d44a2c0b-72a1-4a3d-a5d0-64d93adf8136}</Project>
+      <Name>IBuyServer.Infrastructure</Name>
+    </ProjectReference>
     <ProjectReference Include="..\IBuyServer.Logic\IBuyServer.Logic.csproj">
       <Project>{e3608c76-e0b1-42ac-852a-9d986e8d1362}</Project>
       <Name>IBuyServer.Logic</Name>
