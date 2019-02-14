@@ -40,9 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AddPurchaseRecordDTO.cs" />
+    <Compile Include="DTO\ExpenseDTOs\AddExpenseDTO.cs" />
+    <Compile Include="DTO\ExpenseDTOs\ExpenseDTO.cs" />
+    <Compile Include="DTO\PurchaseRecordDTOs\AddPurchaseRecordDTO.cs" />
+    <Compile Include="DTO\PurchaseRecordDTOs\PurchaseRecordDetailsDTO.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="PurchaseRecordDTO.cs" />
+    <Compile Include="DTO\PurchaseRecordDTOs\PurchaseRecordDTO.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

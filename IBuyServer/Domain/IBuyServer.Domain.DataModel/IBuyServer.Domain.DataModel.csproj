@@ -56,8 +56,13 @@
     <Compile Include="Migrations\201902140833278_inheriting from EntityBase.Designer.cs">
       <DependentUpon>201902140833278_inheriting from EntityBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201902141139465_adding price column and a table for expenses.cs" />
+    <Compile Include="Migrations\201902141139465_adding price column and a table for expenses.Designer.cs">
+      <DependentUpon>201902141139465_adding price column and a table for expenses.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\ExpensesRepository.cs" />
     <Compile Include="Repositories\PurchaseRecordsRepository.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -79,6 +84,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201902140833278_inheriting from EntityBase.resx">
       <DependentUpon>201902140833278_inheriting from EntityBase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201902141139465_adding price column and a table for expenses.resx">
+      <DependentUpon>201902141139465_adding price column and a table for expenses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

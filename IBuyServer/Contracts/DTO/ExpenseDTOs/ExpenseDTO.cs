@@ -1,9 +1,11 @@
-﻿namespace Contracts.DTO.PurchaseRecord
+﻿
+namespace Contracts.DTO.ExpenseDTOs
 {
-    public class PurchaseRecordDTO
+    public class ExpenseDTO
     {
         public string Id { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public int Price { get; set; }
     }
 }

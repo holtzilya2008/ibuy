@@ -7,6 +7,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Contracts;
+using Contracts.DTO.PurchaseRecordDTOs;
 using IBuyServer.Logic.Handlers.PurchaseRecords;
 
 namespace IBuyServer.Service.Controllers
@@ -23,8 +24,8 @@ namespace IBuyServer.Service.Controllers
             return Ok(result);
         }
 
-        // GET: api/PurchaseRecords/5
-        [ResponseType(typeof(PurchaseRecordDTO))]
+        // GET: api/PurchaseRecords/{id}
+        [ResponseType(typeof(PurchaseRecordDetailsDTO))]
         public IHttpActionResult Get(string id)
         {
             var result = new GetPurchaseRecordById().Handle(id);
@@ -47,7 +48,7 @@ namespace IBuyServer.Service.Controllers
             return Ok(result);
         }
 
-        // DELETE: api/PurchaseRecords/5
+        // DELETE: api/PurchaseRecords/{id}
         [ResponseType(typeof(string))]
         public IHttpActionResult Delete(string id)
         {

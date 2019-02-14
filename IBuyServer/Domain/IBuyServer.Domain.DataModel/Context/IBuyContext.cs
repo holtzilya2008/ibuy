@@ -12,6 +12,7 @@ namespace IBuyServer.Domain.DataModel.Context
     public class IBuyContext : DbContext
     {
         public DbSet<PurchaseRecord> PurchaseRecords { get; set; }
+        public DbSet<Expense> Expenses { get; set; }
 
         public override int SaveChanges()
         { 

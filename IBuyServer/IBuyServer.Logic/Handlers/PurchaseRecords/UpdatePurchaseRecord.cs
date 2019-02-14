@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Contracts;
+﻿
+using Contracts.DTO.PurchaseRecordDTOs;
 using IBuyServer.Domain.DataModel.Repositories;
-using IBuyServer.Logic.Mapping;
+using IBuyServer.Logic.Mapping.PurchaseRecordProfiles;
 
 namespace IBuyServer.Logic.Handlers.PurchaseRecords
 {

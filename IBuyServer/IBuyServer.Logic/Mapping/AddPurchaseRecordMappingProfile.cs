@@ -1,30 +1,26 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Contracts;
-using IBuyServer.Domain.Models.Entities;
+﻿using Contracts.DTO.PurchaseRecord;
 
-namespace IBuyServer.Logic.Mapping
+namespace IBuyServer.Logic.Mapping.PurchaseRecord
 {
-    public class AddPurchaseRecordMappingProfile : IMappingProfile<AddPurchaseRecordDTO, PurchaseRecord>
+    public class AddPurchaseRecordMappingProfile : IMappingProfile<AddPurchaseRecordDTO, Domain.Models.Entities.PurchaseRecord>
     {
-        public AddPurchaseRecordDTO ToDto(PurchaseRecord entity)
+        public AddPurchaseRecordDTO ToDto(Domain.Models.Entities.PurchaseRecord entity)
         {
             return new AddPurchaseRecordDTO()
             {
                 Name = entity.Name,
-                Description = entity.Description
+                Description = entity.Description,
+                Price = entity.Price
             };
         }
 
-        public PurchaseRecord ToEntity(AddPurchaseRecordDTO dto)
+        public Domain.Models.Entities.PurchaseRecord ToEntity(AddPurchaseRecordDTO dto)
         {
-            return new PurchaseRecord()
+            return new Domain.Models.Entities.PurchaseRecord()
             {
                 Name = dto.Name,
-                Description = dto.Description
+                Description = dto.Description,
+                Price = dto.Price
             };
         }
     }

@@ -1,12 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Contracts;
+using Contracts.DTO.PurchaseRecordDTOs;
 using IBuyServer.Domain.Models.Entities;
 
-namespace IBuyServer.Logic.Mapping
+namespace IBuyServer.Logic.Mapping.PurchaseRecordProfiles
 {
     class PurchaseRecordMappingProfile : IMappingProfile<PurchaseRecordDTO, PurchaseRecord>
     {
@@ -16,7 +12,8 @@ namespace IBuyServer.Logic.Mapping
             {
                 Id = entity.Id.ToString(),
                 Name = entity.Name,
-                Description = entity.Description
+                Description = entity.Description,
+                Price = entity.Price
             };
         }
 
@@ -26,7 +23,8 @@ namespace IBuyServer.Logic.Mapping
             {
                 Id = Guid.Parse(dto.Id),
                 Name = dto.Name,
-                Description = dto.Description
+                Description = dto.Description,
+                Price = dto.Price
             };
         }
     }

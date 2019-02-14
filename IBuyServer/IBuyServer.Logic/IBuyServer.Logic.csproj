@@ -46,15 +46,19 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Handlers\ExpenseHandlers\AddExpenseHandler.cs" />
+    <Compile Include="Handlers\ExpenseHandlers\DeleteExpenseHandler.cs" />
     <Compile Include="Handlers\IHandler.cs" />
     <Compile Include="Handlers\PurchaseRecords\AddPurchaseRecordHandler.cs" />
     <Compile Include="Handlers\PurchaseRecords\DeletePurchaseRecordHandler.cs" />
     <Compile Include="Handlers\PurchaseRecords\GetPurchaseRecordById.cs" />
     <Compile Include="Handlers\PurchaseRecords\GetPurchaseRecordsHandler.cs" />
     <Compile Include="Handlers\PurchaseRecords\UpdatePurchaseRecord.cs" />
-    <Compile Include="Mapping\AddPurchaseRecordMappingProfile.cs" />
+    <Compile Include="Mapping\ExpenseProfiles\AddExpenseMappingProfile.cs" />
+    <Compile Include="Mapping\ExpenseProfiles\ExpenseMappingProfile.cs" />
+    <Compile Include="Mapping\PurchaseRecordProfiles\AddPurchaseRecordMappingProfile.cs" />
     <Compile Include="Mapping\IMappingProfile.cs" />
-    <Compile Include="Mapping\PurchaseRecordMappingProfile.cs" />
+    <Compile Include="Mapping\PurchaseRecordProfiles\PurchaseRecordMappingProfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

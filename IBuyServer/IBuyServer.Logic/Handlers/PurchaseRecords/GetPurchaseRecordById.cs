@@ -1,24 +1,34 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Contracts;
+using System.Runtime.InteropServices;
+using Contracts.DTO.ExpenseDTOs;
+using Contracts.DTO.PurchaseRecordDTOs;
 using IBuyServer.Domain.DataModel.Repositories;
-using IBuyServer.Logic.Mapping;
+using IBuyServer.Logic.Mapping.ExpenseProfiles;
+using IBuyServer.Logic.Mapping.PurchaseRecordProfiles;
 
 namespace IBuyServer.Logic.Handlers.PurchaseRecords
 {
-    public class GetPurchaseRecordById : IHandler<string, PurchaseRecordDTO>
+    public class GetPurchaseRecordById : IHandler<string, PurchaseRecordDetailsDTO>
     {
-        public PurchaseRecordDTO Handle(string requestArgs)
+        public PurchaseRecordDetailsDTO Handle(string requestArgs)
         {
-            var repository = new PurchaseRecordsRepository();
-            var mappingProfile = new PurchaseRecordMappingProfile();
+            var purchaseRecordRepository = new PurchaseRecordsRepository();
+            var expenseRepository = new ExpensesRepository();
+            var expenseMappingProfile = new ExpenseMappingProfile();
             Guid id = Guid.Parse(requestArgs);
 
-            var record = repository.GetById(id);
-            return mappingProfile.ToDto(record);
+            var record = purchaseRecordRepository.GetById(id);
+            var expenses = expenseRepository.GetAll((expense) => expense.PurchaseRecordId == id );
+            return new PurchaseRecordDetailsDTO()
+            {
+                Id = record.Id.ToString(),
+                Name = record.Name,
+                Description = record.Description,
+                Price = record.Price,
+                RelatedExpenses = expenses.Select((expense) => expenseMappingProfile.ToDto(expense))
+                    .ToList<ExpenseDTO>()
+            };
         }
     }
 }
