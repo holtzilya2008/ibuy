@@ -8,6 +8,7 @@ using System.Web.Http.Cors;
 using System.Web.Http.Description;
 using Contracts;
 using Contracts.DTO.PurchaseRecordDTOs;
+using IBuyServer.Logic.Engines;
 using IBuyServer.Logic.Handlers.PurchaseRecords;
 
 namespace IBuyServer.Service.Controllers
@@ -15,12 +16,18 @@ namespace IBuyServer.Service.Controllers
     [EnableCors(origins: "*", headers: "*", methods: "*")]
     public class PurchaseRecordsController : ApiController
     {
+        private IPurchaseRecordsEngine _engine;
+
+        public PurchaseRecordsController(IPurchaseRecordsEngine engine)
+        {
+            _engine = engine;
+        }
+
         // GET: api/PurchaseRecords
         [ResponseType(typeof(PurchaseRecordDTO[]))]
         public IHttpActionResult Get()
         {
-            var handler = new GetPurchaseRecordsHandler();
-            var result = handler.Handle(null);
+            var result = _engine.GetAllPurchaseRecords();
             return Ok(result);
         }
 
@@ -28,7 +35,7 @@ namespace IBuyServer.Service.Controllers
         [ResponseType(typeof(PurchaseRecordDetailsDTO))]
         public IHttpActionResult Get(string id)
         {
-            var result = new GetPurchaseRecordById().Handle(id);
+            var result = _engine.GetPurchaseRecordDetails(id);
             return Ok(result);
         }
 
@@ -36,7 +43,7 @@ namespace IBuyServer.Service.Controllers
         [ResponseType(typeof(PurchaseRecordDTO))]
         public IHttpActionResult Post([FromBody] AddPurchaseRecordDTO newRecord)
         {
-            var result = new AddPurchaseRecordHandler().Handle(newRecord);
+            var result = _engine.AddPurchaseRecord(newRecord);
             return Ok(result);
         }
 
@@ -44,7 +51,7 @@ namespace IBuyServer.Service.Controllers
         [ResponseType(typeof(PurchaseRecordDTO))]
         public IHttpActionResult Put([FromBody] PurchaseRecordDTO updated)
         {
-            var result = new UpdatePurchaseRecord().Handle(updated);
+            var result = _engine.UpdatePurchaseRecord(updated);
             return Ok(result);
         }
 
@@ -52,7 +59,7 @@ namespace IBuyServer.Service.Controllers
         [ResponseType(typeof(string))]
         public IHttpActionResult Delete(string id)
         {
-            var result = new DeletePurchaseRecordHandler().Handle(id);
+            var result = _engine.DeletePurchaseRecord(id);
             return Ok(result);
         }
     }

@@ -5,11 +5,17 @@ namespace IBuyServer.Logic.Handlers.PurchaseRecords
 {
     public class DeletePurchaseRecordHandler : IHandler<string, string>
     {
+        private IPurchaseRecordsRepository _repository;
+
+        public DeletePurchaseRecordHandler(IPurchaseRecordsRepository repository)
+        {
+            _repository = repository;
+        }
+
         public string Handle(string requestArgs)
         {
-            var repository = new PurchaseRecordsRepository();
             Guid id = Guid.Parse(requestArgs);
-            return repository.Delete(id).ToString();
+            return _repository.Delete(id).ToString();
         }
     }
 }

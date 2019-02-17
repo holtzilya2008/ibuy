@@ -9,12 +9,18 @@ namespace IBuyServer.Logic.Handlers.PurchaseRecords
 {
     public class GetPurchaseRecordsHandler : IHandler<Object, List<PurchaseRecordDTO>>
     {
-        public List<PurchaseRecordDTO> Handle(object requestArgs)
+        private IPurchaseRecordsRepository _repository;
+
+        public GetPurchaseRecordsHandler(IPurchaseRecordsRepository repository)
+        {
+            _repository = repository;
+        }
+
+        public List<PurchaseRecordDTO> Handle(object requestArgs = null)
         {
             var mappingProfile = new PurchaseRecordMappingProfile();
-            var repository = new PurchaseRecordsRepository();
 
-            return repository
+            return _repository
                     .GetAll()
                     .Select(record => mappingProfile.ToDto(record))
                     .ToList();

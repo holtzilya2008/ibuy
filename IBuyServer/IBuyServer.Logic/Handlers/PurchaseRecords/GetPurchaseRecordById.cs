@@ -11,14 +11,20 @@ namespace IBuyServer.Logic.Handlers.PurchaseRecords
 {
     public class GetPurchaseRecordById : IHandler<string, PurchaseRecordDetailsDTO>
     {
+        private IPurchaseRecordsRepository _repository;
+
+        public GetPurchaseRecordById(IPurchaseRecordsRepository repository)
+        {
+            _repository = repository;   
+        }
+
         public PurchaseRecordDetailsDTO Handle(string requestArgs)
         {
-            var purchaseRecordRepository = new PurchaseRecordsRepository();
             var expenseRepository = new ExpensesRepository();
             var expenseMappingProfile = new ExpenseMappingProfile();
             Guid id = Guid.Parse(requestArgs);
 
-            var record = purchaseRecordRepository.GetById(id);
+            var record = _repository.GetById(id);
             var expenses = expenseRepository.GetAll((expense) => expense.PurchaseRecordId == id );
             return new PurchaseRecordDetailsDTO()
             {

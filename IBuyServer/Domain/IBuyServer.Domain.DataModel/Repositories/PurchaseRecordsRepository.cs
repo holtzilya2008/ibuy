@@ -4,7 +4,7 @@ using IBuyServer.Infrastructure.DataAccess;
 
 namespace IBuyServer.Domain.DataModel.Repositories
 {
-    public class PurchaseRecordsRepository : EntityRepositoryBase<PurchaseRecord, IBuyContext>
+    public class PurchaseRecordsRepository : EntityRepositoryBase<PurchaseRecord, IBuyContext>, IPurchaseRecordsRepository
     {
         public PurchaseRecordsRepository() : base(new IBuyContext())
         {

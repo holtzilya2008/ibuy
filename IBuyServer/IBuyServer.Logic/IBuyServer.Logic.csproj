@@ -46,6 +46,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Engines\IPurchaseRecordsEngine.cs" />
+    <Compile Include="Engines\PurchaseRecordsEngine.cs" />
     <Compile Include="Handlers\ExpenseHandlers\AddExpenseHandler.cs" />
     <Compile Include="Handlers\ExpenseHandlers\DeleteExpenseHandler.cs" />
     <Compile Include="Handlers\IHandler.cs" />
