@@ -1,15 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
+﻿using Contracts.DTO.PurchaseRecordDTOs;
+using IBuyServer.Logic.Engines;
 using System.Web.Http;
 using System.Web.Http.Cors;
 using System.Web.Http.Description;
-using Contracts;
-using Contracts.DTO.PurchaseRecordDTOs;
-using IBuyServer.Logic.Engines;
-using IBuyServer.Logic.Handlers.PurchaseRecords;
 
 namespace IBuyServer.Service.Controllers
 {

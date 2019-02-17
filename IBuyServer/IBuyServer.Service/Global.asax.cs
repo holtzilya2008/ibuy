@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Http;
-using System.Web.Routing;
-using IBuyServer.Service.IoC;
-using WebApi.StructureMap;
+﻿using System.Web.Http;
+
 
 namespace IBuyServer.Service
 {
@@ -13,7 +7,7 @@ namespace IBuyServer.Service
     {
         protected void Application_Start()
         {
-            GlobalConfiguration.Configuration.UseStructureMap<IBuyRegistry>();
+            UnityConfig.RegisterComponents();
             GlobalConfiguration.Configure(WebApiConfig.Register);
         }
     }
