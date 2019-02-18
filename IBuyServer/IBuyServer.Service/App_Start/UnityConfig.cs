@@ -1,8 +1,9 @@
+
 using System.Web.Http;
 using IBuyServer.Domain.DataModel.Repositories;
-using IBuyServer.Logic.Engines;
+using IBuyServer.Logic.Handlers;
+using MediatR;
 using Unity;
-using Unity.WebApi;
 
 namespace IBuyServer.Service
 {
@@ -11,15 +12,16 @@ namespace IBuyServer.Service
         public static void RegisterComponents()
         {
 			var container = new UnityContainer();
-
-            container.RegisterType<IPurchaseRecordsEngine, PurchaseRecordsEngine>();
             container.RegisterType<IPurchaseRecordsRepository, PurchaseRecordsRepository>();
-            // register all your components with the container here
-            // it is NOT necessary to register your controllers
+            RegisterMediatR(container);
+            GlobalConfiguration.Configuration.DependencyResolver = new Unity.AspNet.WebApi.UnityDependencyResolver(container);
+        }
 
-            // e.g. container.RegisterType<ITestService, TestService>();
-            System.Diagnostics.Debug.WriteLine("Unity Container initialized!");
-            GlobalConfiguration.Configuration.DependencyResolver = new UnityDependencyResolver(container);
+
+        public static void RegisterMediatR(UnityContainer container)
+        {
+            container.RegisterType<IMediator, Mediator>();
+            HandlersRegistrator.RegisterHandlers(container);
         }
     }
 }

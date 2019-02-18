@@ -52,6 +52,7 @@
     <Compile Include="DataAccess\Exceptions\ResourceNotFouneException.cs" />
     <Compile Include="DataAccess\IEntity.cs" />
     <Compile Include="DataAccess\IRepository.cs" />
+    <Compile Include="MediatR\Response.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

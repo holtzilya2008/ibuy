@@ -4,23 +4,23 @@ using IBuyServer.Logic.Mapping.PurchaseRecordProfiles;
 
 namespace IBuyServer.Logic.Handlers.PurchaseRecords
 {
-    public class AddPurchaseRecordHandler : IHandler<AddPurchaseRecordDTO, PurchaseRecordDTO>
-    {
+    //public class AddPurchaseRecordHandler : IHandler<AddPurchaseRecordDTO, PurchaseRecordDTO>
+    //{
 
-        private IPurchaseRecordsRepository _repository;
+    //    private IPurchaseRecordsRepository _repository;
 
-        public AddPurchaseRecordHandler(IPurchaseRecordsRepository repository)
-        {
-            _repository = repository;
-        }
+    //    public AddPurchaseRecordHandler(IPurchaseRecordsRepository repository)
+    //    {
+    //        _repository = repository;
+    //    }
 
-        public PurchaseRecordDTO Handle(AddPurchaseRecordDTO requestArgs)
-        {
-            var purchaseRecordMappingProfile = new PurchaseRecordMappingProfile();
-            var addPurchaseRecordMappingProfile = new AddPurchaseRecordMappingProfile();
+    //    public PurchaseRecordDTO Handle(AddPurchaseRecordDTO requestArgs)
+    //    {
+    //        var purchaseRecordMappingProfile = new PurchaseRecordMappingProfile();
+    //        var addPurchaseRecordMappingProfile = new AddPurchaseRecordMappingProfile();
 
-            var addedEntity = _repository.Add(addPurchaseRecordMappingProfile.ToEntity(requestArgs));
-            return purchaseRecordMappingProfile.ToDto(addedEntity);
-        }
-    }
+    //        var addedEntity = _repository.Add(addPurchaseRecordMappingProfile.ToEntity(requestArgs));
+    //        return purchaseRecordMappingProfile.ToDto(addedEntity);
+    //    }
+    //}
 }

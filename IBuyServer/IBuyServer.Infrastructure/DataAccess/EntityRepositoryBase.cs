@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Threading.Tasks;
 using IBuyServer.Infrastructure.DataAccess.Exceptions;
 
 namespace IBuyServer.Infrastructure.DataAccess
@@ -20,24 +21,24 @@ namespace IBuyServer.Infrastructure.DataAccess
             EntitiesDbSet = Context.Set<TEntity>();
         }
 
-        public List<TEntity> GetAll()
+        public async Task<List<TEntity>> GetAll()
         {
-            return GetAll(null);
+            return await GetAll(null);
         }
 
-        public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter)
+        public async Task<List<TEntity>> GetAll(Expression<Func<TEntity, bool>> filter)
         {
             var query = EntitiesDbSet.AsNoTracking();
             if (filter == null)
             {
                 return query.ToList<TEntity>();
             }
-            return query.Where<TEntity>(filter).ToList<TEntity>();
+            return await query.Where<TEntity>(filter).ToListAsync<TEntity>();
         }
 
-        public TEntity GetById(Guid id)
+        public async Task<TEntity> GetById(Guid id)
         {
-            TEntity entity = EntitiesDbSet.Find(id);
+            TEntity entity = await EntitiesDbSet.FindAsync(id);
             if (entity == null)
             {
                 throw new ResourceNotFoundException(id);
@@ -45,26 +46,26 @@ namespace IBuyServer.Infrastructure.DataAccess
             return entity;
         }
 
-        public TEntity Add(TEntity entity)
+        public async Task<TEntity> Add(TEntity entity)
         {
             EntitiesDbSet.Add(entity);
-            Context.SaveChanges();
+            await Context.SaveChangesAsync();
             return entity;
         }
 
-        public TEntity Update(TEntity updated)
+        public async Task<TEntity> Update(TEntity updated)
         {
-            TEntity current = GetById(updated.Id);
+            TEntity current = await GetById(updated.Id);
             Context.Entry(current).CurrentValues.SetValues(updated);
-            Context.SaveChanges();
+            await Context.SaveChangesAsync();
             return updated;
         }
 
-        public Guid Delete(Guid id)
+        public async Task<Guid> Delete(Guid id)
         {
-            TEntity entity = GetById(id);
+            TEntity entity = await GetById(id);
             EntitiesDbSet.Remove(entity);
-            Context.SaveChanges();
+            await Context.SaveChangesAsync();
             return id;
         }
 
