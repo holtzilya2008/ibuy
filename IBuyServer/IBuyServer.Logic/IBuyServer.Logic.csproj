@@ -60,6 +60,7 @@
   <ItemGroup>
     <Compile Include="Handlers\ExpenseHandlers\AddExpenseHandler.cs" />
     <Compile Include="Handlers\ExpenseHandlers\DeleteExpenseHandler.cs" />
+    <Compile Include="Handlers\ExpenseHandlers\GetExpensesForPurchaseRecord.cs" />
     <Compile Include="Handlers\HandlersRegistrator.cs" />
     <Compile Include="Handlers\PurchaseRecords\AddPurchaseRecordHandler.cs" />
     <Compile Include="Handlers\PurchaseRecords\DeletePurchaseRecordHandler.cs" />

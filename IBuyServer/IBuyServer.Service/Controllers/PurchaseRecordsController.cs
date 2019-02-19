@@ -27,13 +27,13 @@ namespace IBuyServer.Service.Controllers
             return Ok(result.Value);
         }
 
-        //// GET: api/PurchaseRecords/{id}
-        //[ResponseType(typeof(PurchaseRecordDetailsDTO))]
-        //public IHttpActionResult Get(string id)
-        //{
-        //    var result = _engine.GetPurchaseRecordDetails(id);
-        //    return Ok(result);
-        //}
+        // GET: api/PurchaseRecords/{id}
+        [ResponseType(typeof(PurchaseRecordDTO[]))]
+        public async Task<IHttpActionResult> Get(string id)
+        {
+            var result = await _mediator.Send(new GetPurchaseRecordByIdRequest(id));
+            return Ok(result.Value);
+        }
 
         // POST: api/PurchaseRecords
         [ResponseType(typeof(PurchaseRecordDTO))]
@@ -43,20 +43,20 @@ namespace IBuyServer.Service.Controllers
             return Ok(result.Value);
         }
 
-        //// PUT: api/PurchaseRecords/
-        //[ResponseType(typeof(PurchaseRecordDTO))]
-        //public IHttpActionResult Put([FromBody] PurchaseRecordDTO updated)
-        //{
-        //    var result = _engine.UpdatePurchaseRecord(updated);
-        //    return Ok(result);
-        //}
+        // PUT: api/PurchaseRecords/
+        [ResponseType(typeof(PurchaseRecordDTO))]
+        public async Task<IHttpActionResult> Update([FromBody] PurchaseRecordDTO updated)
+        {
+            var result = await _mediator.Send(new UpdatePurchaseRecordRequest(updated));
+            return Ok(result.Value);
+        }
 
-        //// DELETE: api/PurchaseRecords/{id}
-        //[ResponseType(typeof(string))]
-        //public IHttpActionResult Delete(string id)
-        //{
-        //    var result = _engine.DeletePurchaseRecord(id);
-        //    return Ok(result);
-        //}
+        // DELETE: api/PurchaseRecords/{id}
+        [ResponseType(typeof(string))]
+        public async Task<IHttpActionResult> Delete(string id)
+        {
+            var result = await _mediator.Send(new DeletePurchaseRecordRequest(id));
+            return Ok(result.Value);
+        }
     }
 }

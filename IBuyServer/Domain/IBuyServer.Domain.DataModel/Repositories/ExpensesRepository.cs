@@ -4,7 +4,7 @@ using IBuyServer.Infrastructure.DataAccess;
 
 namespace IBuyServer.Domain.DataModel.Repositories
 {
-    public class ExpensesRepository : EntityRepositoryBase<Expense, IBuyContext>
+    public class ExpensesRepository : EntityRepositoryBase<Expense, IBuyContext>, IExpenseRepository
     {
         public ExpensesRepository() : base(new IBuyContext())
         {
