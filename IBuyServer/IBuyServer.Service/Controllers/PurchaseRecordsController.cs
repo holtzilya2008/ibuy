@@ -24,7 +24,7 @@ namespace IBuyServer.Service.Controllers
         public async Task<IHttpActionResult> Get()
         {
             var result = await _mediator.Send(new GetPurchaseRecordsRequest());
-            return Ok(result);
+            return Ok(result.Value);
         }
 
         //// GET: api/PurchaseRecords/{id}
@@ -35,13 +35,13 @@ namespace IBuyServer.Service.Controllers
         //    return Ok(result);
         //}
 
-        //// POST: api/PurchaseRecords
-        //[ResponseType(typeof(PurchaseRecordDTO))]
-        //public IHttpActionResult Post([FromBody] AddPurchaseRecordDTO newRecord)
-        //{
-        //    var result = _engine.AddPurchaseRecord(newRecord);
-        //    return Ok(result);
-        //}
+        // POST: api/PurchaseRecords
+        [ResponseType(typeof(PurchaseRecordDTO))]
+        public async Task<IHttpActionResult> Create([FromBody] AddPurchaseRecordDTO newRecord)
+        {
+            var result = await _mediator.Send(new AddPurchaseRecordRequest(newRecord));
+            return Ok(result.Value);
+        }
 
         //// PUT: api/PurchaseRecords/
         //[ResponseType(typeof(PurchaseRecordDTO))]

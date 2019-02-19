@@ -1,26 +1,38 @@
-﻿using Contracts.DTO.PurchaseRecordDTOs;
+﻿using System.Threading;
+using System.Threading.Tasks;
+using Contracts.DTO.PurchaseRecordDTOs;
 using IBuyServer.Domain.DataModel.Repositories;
+using IBuyServer.Infrastructure.MediatR;
 using IBuyServer.Logic.Mapping.PurchaseRecordProfiles;
+using MediatR;
 
 namespace IBuyServer.Logic.Handlers.PurchaseRecords
 {
-    //public class AddPurchaseRecordHandler : IHandler<AddPurchaseRecordDTO, PurchaseRecordDTO>
-    //{
+    public class AddPurchaseRecordHandler : IRequestHandler<AddPurchaseRecordRequest, Response<PurchaseRecordDTO>>
+    {
+        private IPurchaseRecordsRepository _repository;
 
-    //    private IPurchaseRecordsRepository _repository;
+        public AddPurchaseRecordHandler(IPurchaseRecordsRepository repository)
+        {
+            _repository = repository;
+        }
 
-    //    public AddPurchaseRecordHandler(IPurchaseRecordsRepository repository)
-    //    {
-    //        _repository = repository;
-    //    }
+        public async Task<Response<PurchaseRecordDTO>> Handle(AddPurchaseRecordRequest request, CancellationToken cancellationToken)
+        {
+            var purchaseRecordMappingProfile = new PurchaseRecordMappingProfile();
+            var addPurchaseRecordMappingProfile = new AddPurchaseRecordMappingProfile();
+            var addedEntity = await _repository.Add(addPurchaseRecordMappingProfile.ToEntity(request.RequestDTO));
+            return new Response<PurchaseRecordDTO>(purchaseRecordMappingProfile.ToDto(addedEntity));
+        }
+    }
 
-    //    public PurchaseRecordDTO Handle(AddPurchaseRecordDTO requestArgs)
-    //    {
-    //        var purchaseRecordMappingProfile = new PurchaseRecordMappingProfile();
-    //        var addPurchaseRecordMappingProfile = new AddPurchaseRecordMappingProfile();
+    public class AddPurchaseRecordRequest : IRequest<Response<PurchaseRecordDTO>>
+    {
+        public AddPurchaseRecordDTO RequestDTO { get; set; }
 
-    //        var addedEntity = _repository.Add(addPurchaseRecordMappingProfile.ToEntity(requestArgs));
-    //        return purchaseRecordMappingProfile.ToDto(addedEntity);
-    //    }
-    //}
+        public AddPurchaseRecordRequest(AddPurchaseRecordDTO addPurchaseRecordDTO)
+        {
+            RequestDTO = addPurchaseRecordDTO;
+        }
+    }
 }

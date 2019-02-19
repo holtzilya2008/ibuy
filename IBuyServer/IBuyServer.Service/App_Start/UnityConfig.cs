@@ -26,13 +26,8 @@ namespace IBuyServer.Service
 
         public static void RegisterMediatR(UnityContainer container)
         {
-            System.Diagnostics.Debug.WriteLine("start of RegisterMediatR");
-
             container.RegisterMediator(new Unity.Lifetime.HierarchicalLifetimeManager())
                 .RegisterMediatorHandlers(Assembly.GetAssembly(typeof(GetPurchaseRecordsHandler)));
-
-            System.Diagnostics.Debug.WriteLine("end of RegisterMediatR");
-            //HandlersRegistrator.RegisterHandlers(container);
         }
     }
 }
